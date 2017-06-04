@@ -1,0 +1,19 @@
+Colory Help
+
+Colory is a kind of a memory game.
+
+Push the 'Start' button to begin. Colory plays a sequence of colored areas to be pushed.
+Repeat the sequence by pushing the colored areas in Colory. You win if you can exactly
+repeat the Colory sequence. Otherwise you loose.
+
+On win Colory increases the maximum number of colored areas to be pushed in the next sequence.
+Otherwise the maximum number of buttons to be pushed in the next sequence is reduced by one.
+
+Every colored area is combined with a sound. So turn on or increase the volume of your
+sound device.
+
+You can replay the sequence give by Colory using the replay button.
+
+You can switch off/on sound effects by using Colory speaker toggle button.
+
+You can change Colory look and feel by using the combobox. 

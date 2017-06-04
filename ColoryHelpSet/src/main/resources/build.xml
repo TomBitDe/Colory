@@ -1,0 +1,26 @@
+<project name="ColoryHelp" default="dist" basedir=".">
+    <description>
+        Create the ColoryHelp
+    </description>
+    
+    <!-- set global properties for this build -->
+    <property name="src" location="src/main/resources/content"/>
+    <property name="dist" location="target"/>
+    <property name="helpname" value="ColoryHelp"/>
+
+    <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp/>
+    </target>
+
+    <target name="dist" depends="init,clean" description="generate the distribution">
+        <!-- Put everything in content into the jar file -->
+        <jar jarfile="${helpname}.jar" basedir="${src}"/>
+    </target>
+
+    <target name="clean" description="clean up">
+        <!-- Delete the ${dist} directory tree -->
+        <delete file="${helpname}.jar"/>
+    </target>
+</project>
+
