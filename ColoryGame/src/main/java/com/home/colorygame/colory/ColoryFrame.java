@@ -33,7 +33,7 @@ import util.ChartUtil;
  */
 public final class ColoryFrame extends javax.swing.JFrame implements java.awt.event.KeyListener, ColoryKeyListenerIF {
 
-    private static final Logger log = Logger.getLogger(ColoryFrame.class.getName());
+    private static final Logger LOG = Logger.getLogger(ColoryFrame.class.getName());
     private int maxColorBtns = 0;
 
     private ColoryMute mute;
@@ -76,7 +76,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
 
         // Reload the level as initial gameSequenceCount
         gameSequenceCount = ColoryUtil.restoreLevel(ColoryUtil.PREF_NODE + ColoryUtil.PREF_LEVEL);
-        log.info(new StringBuffer("Starting level is: ").append(gameSequenceCount).toString());
+        LOG.info(new StringBuffer("Starting level is: ").append(gameSequenceCount).toString());
 
         // Reload and set the mute setting
         mute = ColoryUtil.restoreMute(ColoryUtil.PREF_NODE + ColoryUtil.PREF_SETTINGS);
@@ -86,7 +86,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
         else {
             tglMute.setSelected(false);
         }
-        log.info(new StringBuffer("Starting mute is: ").append(mute).toString());
+        LOG.info(new StringBuffer("Starting mute is: ").append(mute).toString());
 
         // Add the Look and Feel ComboBox and set the Look and Feel to the stored value
         lafComboBox = new LafComboBox(this);
@@ -301,7 +301,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
             playSequence(colorySequence);
         }
         catch (InterruptedException iex) {
-            log.severe(iex.getLocalizedMessage());
+            LOG.severe(iex.getLocalizedMessage());
         }
     }//GEN-LAST:event_btnReplayActionPerformed
 
@@ -325,7 +325,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
             changeColoryType(cboStyle.getSelectedItem().toString());
         }
         else {
-            log.info(new StringBuffer("Invalid Colory type selection: ").append(cboStyle.getSelectedItem().toString()).toString());
+            LOG.info(new StringBuffer("Invalid Colory type selection: ").append(cboStyle.getSelectedItem().toString()).toString());
         }
     }//GEN-LAST:event_cboStyleActionPerformed
 
@@ -394,7 +394,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
         }
 
         initKeyComponents();
-        log.info(new StringBuffer("Colory type changed: ").append(cboStyle.getSelectedItem().toString()).toString());
+        LOG.info(new StringBuffer("Colory type changed: ").append(cboStyle.getSelectedItem().toString()).toString());
         lbInfo.setText("Push 'Start'");
         coloryArea.allPushAreasSetEnabled(false);
         btnStart.setEnabled(true);
@@ -416,13 +416,13 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
             coloryPanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             colorySequence = new ColorySequence(Util.randMinMax(ColoryUtil.GAME_INIT_SEQUENCE_COUNT,
                                                                 gameSequenceCount), maxColorBtns);
-            log.info(new StringBuffer().append("Sequence size is ").append(colorySequence.size())
+            LOG.info(new StringBuffer().append("Sequence size is ").append(colorySequence.size())
                     .append("; MAX is ").append(gameSequenceCount).toString());
             lbInfo.setText("Follow the sequence");
             playSequence(colorySequence);
         }
         catch (InterruptedException iex) {
-            log.severe(iex.getLocalizedMessage());
+            LOG.severe(iex.getLocalizedMessage());
         }
     }
 
@@ -435,7 +435,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
      * @throws InterruptedException if this thread is interrupted by any other
      */
     private void playSequence(final ColorySequence colorySequence) throws InterruptedException {
-        log.info("Start playing button sequence");
+        LOG.info("Start playing button sequence");
         coloryMode = ColoryMode.SEQUENCE_REPLAY;
 
         Thread t0 = new Thread(new Runnable() {
@@ -450,7 +450,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
                             @Override
                             public void run() {
                                 // Simulate btn push
-                                log.info(new StringBuffer().append("Replay button ").append(j).toString());
+                                LOG.info(new StringBuffer().append("Replay button ").append(j).toString());
                                 coloryArea.get(j).getButton().setEnabled(true);
                                 playSound(mute, coloryArea.get(j).getAudioInputStream(), ColoryUtil.MAX_SLEEP_MILLI);
                                 coloryArea.get(j).getButton().doClick(ColoryUtil.MAX_SLEEP_MILLI);
@@ -459,14 +459,14 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
                         });
                     }
                     catch (InvocationTargetException itex) {
-                        log.severe(itex.getLocalizedMessage());
+                        LOG.severe(itex.getLocalizedMessage());
                     }
                     catch (InterruptedException iex) {
-                        log.severe(iex.getLocalizedMessage());
+                        LOG.severe(iex.getLocalizedMessage());
                     }
                 }
 
-                log.info("Finished playing button sequence");
+                LOG.info("Finished playing button sequence");
 
                 // User input now requested; prepared for it
                 coloryPanel.setCursor(Cursor.getDefaultCursor());
@@ -503,7 +503,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
         playSound(mute, coloryArea.getPushArea(evt).getAudioInputStream(), ColoryUtil.MAX_SLEEP_MILLI);
 
         // Log the button index the user pushed
-        log.info(new StringBuffer().append("User pushed button ").append(coloryArea.getPushAreaIndex(evt)).toString());
+        LOG.info(new StringBuffer().append("User pushed button ").append(coloryArea.getPushAreaIndex(evt)).toString());
 
         // Get the index of the corresponding btnSequence value for evaluation
         int idx = colorySequence.get(userSequenceCount);
@@ -514,7 +514,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
             if (gameSequenceCount > ColoryUtil.GAME_INIT_SEQUENCE_COUNT) {
                 --gameSequenceCount;
             }
-            log.info("Wrong button. User failed");
+            LOG.info("Wrong button. User failed");
             lbInfo.setText("Oops, you failed. Try again!");
             coloryArea.allPushAreasSetEnabled(false);
             btnStart.setEnabled(true);
@@ -533,7 +533,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
             if (userSequenceCount >= gameSequenceCount) {
                 ++gameSequenceCount;
             }
-            log.info("User wins");
+            LOG.info("User wins");
             lbInfo.setText("Done. Push 'Start' for more");
             coloryArea.allPushAreasSetEnabled(false);
             btnStart.setEnabled(true);
@@ -569,7 +569,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
      * Init the permanent components for listening on keyboard keys
      */
     private void initPermanentComponents() {
-        log.info("initPermanentComponents");
+        LOG.info("initPermanentComponents");
         btnStart.addKeyListener(this);
         btnReplay.addKeyListener(this);
         tglMute.addKeyListener(this);
@@ -587,7 +587,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
         // Initialize permanent keyboard keys
         initPermanentComponents();
 
-        log.info("initKeyComponents");
+        LOG.info("initKeyComponents");
         Component comp[] = coloryPanel.getComponents();
         for (int idx = 0; idx < coloryPanel.getComponents().length; ++idx) {
             if (comp[idx].getClass().equals(JButton.class)) {
@@ -601,7 +601,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
      */
     @Override
     public void addKeyListener() {
-        log.info("addKeyListener");
+        LOG.info("addKeyListener");
         for (JComponent item : keyComponent) {
             item.addKeyListener(this);
         }
@@ -612,7 +612,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
      */
     @Override
     public void removeKeyListener() {
-        log.info("removeKeyListener");
+        LOG.info("removeKeyListener");
         for (JComponent item : keyComponent) {
             item.removeKeyListener(this);
         }
@@ -625,9 +625,9 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
      */
     @Override
     public void evaluateKey(KeyEvent e) {
-        log.info(new StringBuffer("Key pressed ").append(e.getKeyChar()).toString());
+        LOG.info(new StringBuffer("Key pressed ").append(e.getKeyChar()).toString());
         if (coloryArea.getPushArea(e) == null) {
-            log.info("Check for special keyboard key pressed");
+            LOG.info("Check for special keyboard key pressed");
 
             switch (e.getKeyChar()) {
                 case 's':
@@ -649,14 +649,14 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
                     new ColoryStatisticsJDialog(this, true).setVisible(true);
                     break;
                 default:
-                    log.info(new StringBuffer("Action for key ").append(e.getKeyChar()).append(" not defined").toString());
+                    LOG.info(new StringBuffer("Action for key ").append(e.getKeyChar()).append(" not defined").toString());
                     break;
             }
             return;
         }
 
         if (coloryMode == ColoryMode.SEQUENCE_REPLAY) {
-            log.info(new StringBuffer("Mode invalid ").append(coloryMode.toString()).toString());
+            LOG.info(new StringBuffer("Mode invalid ").append(coloryMode.toString()).toString());
             return;
         }
 
@@ -694,7 +694,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
             out.close();
         }
         catch (IOException ioex) {
-            log.warning(ioex.getLocalizedMessage());
+            LOG.warning(ioex.getLocalizedMessage());
         }
         GuiUtils.storeWinDim(ColoryUtil.PREF_NODE + ColoryUtil.PREF_WINDIM, this);
         ColoryUtil.storeLevel(ColoryUtil.PREF_NODE + ColoryUtil.PREF_LEVEL, gameSequenceCount);
@@ -715,17 +715,29 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
 
         try {
             URL hsURL = HelpSet.findHelpSet(cl, ColoryUtil.HELP_HS + ".hs");
-            hs = new HelpSet(null, hsURL);
-            // Create a HelpBroker object
-            hb = hs.createHelpBroker();
-            btnHelp.addActionListener(new CSH.DisplayHelpFromSource(hb));
+            if (hsURL != null) {
+                hs = new HelpSet(null, hsURL);
+                // Create a HelpBroker object
+                hb = hs.createHelpBroker();
+                btnHelp.addActionListener(new CSH.DisplayHelpFromSource(hb));
 
-            log.info("HelpTool initialized");
+                LOG.info("HelpTool initialized");
+            }
+            else {
+                LOG.severe("HelpSet " + ColoryUtil.HELP_HS + ".hs not found !");
+                btnHelp.addActionListener(new java.awt.event.ActionListener() {
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        // Display a warning message
+                        showHelpSetWarning();
+                    }
+                });
+            }
         }
         catch (Exception ee) {
             // Log what the exception really is
-            log.info(ee.getLocalizedMessage());
-            log.severe("HelpSet " + ColoryUtil.HELP_HS + " not found !");
+            LOG.info(ee.getLocalizedMessage());
+            LOG.severe("HelpSet " + ColoryUtil.HELP_HS + " not found !");
 
             btnHelp.addActionListener(new java.awt.event.ActionListener() {
                 @Override
@@ -754,10 +766,10 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
         try {
             // Open file for appending data (flag is true)
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ChartUtil.getStatisticPath(), true), StandardCharsets.UTF_8));
-            log.info(new StringBuffer("Ready to save statistic data to file: ").append(ChartUtil.getStatisticPath()).toString());
+            LOG.info(new StringBuffer("Ready to save statistic data to file: ").append(ChartUtil.getStatisticPath()).toString());
         }
         catch (FileNotFoundException ioex) {
-            log.warning(ioex.getLocalizedMessage());
+            LOG.warning(ioex.getLocalizedMessage());
             out = null;
         }
     }
@@ -767,7 +779,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
      */
     private void writeStatisticRecord() {
         if (out == null) {
-            log.warning("Statistic data saving not ready");
+            LOG.warning("Statistic data saving not ready");
             return;
         }
 
@@ -786,10 +798,10 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
                     .append(replayCount);
             out.write(record.toString() + System.getProperty("line.separator", "\n"));
             out.flush();
-            log.info("Statistic data written");
+            LOG.info("Statistic data written");
         }
         catch (IOException ioex) {
-            log.warning(ioex.getLocalizedMessage());
+            LOG.warning(ioex.getLocalizedMessage());
         }
     }
 
