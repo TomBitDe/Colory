@@ -19,57 +19,6 @@
     </profiles>
     <artifactId>ColoryHelpSet</artifactId>
     <packaging>jar</packaging>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <phase>process-resources</phase>
-                            <configuration>
-                                <tasks>
-                                    <ant antfile="src/main/resources/build.xml" target="dist"/>
-                                </tasks>
-                            </configuration>
-                            <goals>
-                                <goal>run</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>default-jar</id>
-                            <phase>none</phase>
-                        </execution>
-                        <execution>
-                            <id>default-install</id>
-                            <phase>none</phase>
-                        </execution>
-                        <execution>
-                            <phase>initialize</phase>
-                            <goals>
-                                <goal>install-file</goal>
-                            </goals>
-                            <configuration>
-                                <file>ColoryHelp.jar</file>
-                                <groupId>com.home</groupId>
-                                <artifactId>ColoryHelpSet</artifactId>
-                                <version>1.0-SNAPSHOT</version>
-                                <packaging>jar</packaging>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <!--
-                -->
-            </plugins>
-        </pluginManagement>
-    </build>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
