@@ -1,1 +1,2 @@
 # Colory
+A simple game.
