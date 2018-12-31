@@ -20,12 +20,15 @@ import javax.swing.UIManager.LookAndFeelInfo;
  * @author Tom
  */
 public class LafManager extends JMenu {
-    private static final Logger log = Logger.getLogger(LafManager.class.getName());
-    private LookAndFeelInfo lafArray[];
+    private static final Logger LOG = Logger.getLogger(LafManager.class.getName());
+    private final LookAndFeelInfo lafArray[];
     private transient final JFrame frame;
 
     /**
      * Creates a new instance of LafManager
+     *
+     * @param title the menu title for the look and feel manager menu
+     * @param frame the parent frame
      */
     public LafManager(String title, JFrame frame) {
         super(title);
@@ -49,11 +52,11 @@ public class LafManager extends JMenu {
             add(lafItem);
             if (lafId != null && lafId.equals(name)) {
                 lafItem.setSelected(true);
-                log.info("Look and Feel initialized to [" + lafArray[idx].getClassName() + "]");
+                LOG.info("Look and Feel initialized to [" + lafArray[idx].getClassName() + "]");
             }
         }
 
-        log.info("LafManager created");
+        LOG.info("LafManager created");
     }
 
     private class LafAction implements ActionListener {

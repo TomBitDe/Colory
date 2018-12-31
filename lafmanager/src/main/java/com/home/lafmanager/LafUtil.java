@@ -7,11 +7,10 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
- * Look & Feel utility class
- * <p>
+ * Look and Feel utility class
  */
 public class LafUtil {
-    private static final Logger log = Logger.getLogger(LafUtil.class.getName());
+    private static final Logger LOG = Logger.getLogger(LafUtil.class.getName());
 
     private LafUtil() {
         throw new AssertionError();
@@ -30,19 +29,19 @@ public class LafUtil {
             }
             UIManager.setLookAndFeel(newLAF);
             SwingUtilities.updateComponentTreeUI(win);
-            log.info("LookAndFeel changed to [" + newLAF + "]");
+            LOG.info("LookAndFeel changed to [" + newLAF + "]");
         }
         catch (ClassNotFoundException e) {
-            log.info("LookAndFeel [" + newLAF + "] could not be set !");
+            LOG.info("LookAndFeel [" + newLAF + "] could not be set !");
         }
         catch (IllegalAccessException e) {
-            log.info("LookAndFeel [" + newLAF + "] could not be set !");
+            LOG.info("LookAndFeel [" + newLAF + "] could not be set !");
         }
         catch (InstantiationException e) {
-            log.info("LookAndFeel [" + newLAF + "] could not be set !");
+            LOG.info("LookAndFeel [" + newLAF + "] could not be set !");
         }
         catch (UnsupportedLookAndFeelException e) {
-            log.info("LookAndFeel [" + newLAF + "] could not be set !");
+            LOG.info("LookAndFeel [" + newLAF + "] could not be set !");
         }
     }
 }

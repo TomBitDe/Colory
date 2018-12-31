@@ -14,8 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 /**
- * A ComboBox to change the Look & Feel
- * <p>
+ * A ComboBox to change the Look and Feel
  */
 public final class LafComboBox extends JComboBox implements ActionListener {
     private static final Logger log = Logger.getLogger(LafComboBox.class.getName());
