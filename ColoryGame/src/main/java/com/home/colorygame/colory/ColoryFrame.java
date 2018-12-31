@@ -197,6 +197,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
         tglMute = new javax.swing.JToggleButton();
         cboStyle = new javax.swing.JComboBox();
         jPanel5 = new javax.swing.JPanel();
+        btnStatistic = new javax.swing.JButton();
         btnHelp = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
 
@@ -258,8 +259,19 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
 
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 3, 0));
 
+        btnStatistic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TipOfTheDay16.gif"))); // NOI18N
+        btnStatistic.setToolTipText("Show statistics...");
+        btnStatistic.setMinimumSize(new java.awt.Dimension(25, 25));
+        btnStatistic.setPreferredSize(new java.awt.Dimension(25, 25));
+        btnStatistic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStatisticActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnStatistic);
+
         btnHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Help16.gif"))); // NOI18N
-        btnHelp.setToolTipText("Show help");
+        btnHelp.setToolTipText("Show help...");
         btnHelp.setMinimumSize(new java.awt.Dimension(25, 25));
         btnHelp.setPreferredSize(new java.awt.Dimension(25, 25));
         jPanel5.add(btnHelp);
@@ -328,6 +340,10 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
             LOG.info(new StringBuffer("Invalid Colory type selection: ").append(cboStyle.getSelectedItem().toString()).toString());
         }
     }//GEN-LAST:event_cboStyleActionPerformed
+
+    private void btnStatisticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatisticActionPerformed
+        new ColoryStatisticsJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_btnStatisticActionPerformed
 
     /**
      * Change the Colory style
@@ -827,6 +843,7 @@ public final class ColoryFrame extends javax.swing.JFrame implements java.awt.ev
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnReplay;
+    private javax.swing.JButton btnStatistic;
     private javax.swing.JComboBox cboStyle;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
