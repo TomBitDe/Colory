@@ -22,6 +22,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
 /**
+ * The colory statistics dialog
  */
 public final class ColoryStatisticsJDialog extends javax.swing.JDialog implements javax.swing.event.TreeSelectionListener {
     private static final long serialVersionUID = 1L;
@@ -34,6 +35,9 @@ public final class ColoryStatisticsJDialog extends javax.swing.JDialog implement
 
     /**
      * Creates new form ColoryStatisticsJDialog
+     *
+     * @param parent the parent frame
+     * @param modal  modal or non-modal dialog
      */
     public ColoryStatisticsJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -277,6 +281,8 @@ public final class ColoryStatisticsJDialog extends javax.swing.JDialog implement
 
     /**
      * Get the complete path and filename where the chart tree is saved
+     *
+     * @return the chart tree path
      */
     public static String getChartTreePath() {
         StringBuilder path;

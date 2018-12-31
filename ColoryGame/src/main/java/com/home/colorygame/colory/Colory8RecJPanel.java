@@ -2,7 +2,6 @@ package com.home.colorygame.colory;
 
 /**
  * A Panel containing eight PushAreas arranged in a rectangle
- * <p>
  */
 public class Colory8RecJPanel extends ColoryPanel {
     /**

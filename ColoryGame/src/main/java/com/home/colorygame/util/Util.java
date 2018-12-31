@@ -13,14 +13,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * Static utility methods
- * <p>
  */
 public class Util {
-    private static final Logger log = Logger.getLogger(Util.class.getName());
+    private static final Logger LOG = Logger.getLogger(Util.class.getName());
 
     /**
      * No instance should be possible; suppress default constructor
-     * <p>
      */
     private Util() {
         throw new AssertionError();
@@ -61,7 +59,7 @@ public class Util {
                     clip.close();
                 }
                 catch (LineUnavailableException | UnsupportedAudioFileException | IOException | InterruptedException e) {
-                    log.severe(e.getLocalizedMessage());
+                    LOG.severe(e.getLocalizedMessage());
                 }
             }
         }).start();
@@ -100,7 +98,7 @@ public class Util {
                     clip.close();
                 }
                 catch (LineUnavailableException | IOException | InterruptedException e) {
-                    log.severe(e.getLocalizedMessage());
+                    LOG.severe(e.getLocalizedMessage());
                 }
             }
         }).start();
@@ -108,7 +106,7 @@ public class Util {
 
     /**
      * Generate a random value between min and max including the<br>
-     * min/max value. If min >= max the returned value is Math.min(min, max)<br>
+     * min/max value. If min greater or equal max the returned value is Math.min(min, max)<br>
      * Example: randMinMax(3, 5)<br>
      * Possible values: 3, 4, 5<br>
      *

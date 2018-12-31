@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 /**
  * The main items of the Colory game
- * <p>
  */
 public final class ColoryArea extends ArrayList<PushArea> {
     private static final long serialVersionUID = 1L;
@@ -13,7 +12,6 @@ public final class ColoryArea extends ArrayList<PushArea> {
 
     /**
      * Create the Colory area. Initially it contains no PushAreas
-     * <p>
      */
     public ColoryArea() {
         super();

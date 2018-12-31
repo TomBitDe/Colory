@@ -8,7 +8,6 @@ import java.util.prefs.Preferences;
 
 /**
  * General utilities for GUI processing
- * <p>
  */
 public class GuiUtils {
     /**

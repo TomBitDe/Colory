@@ -11,6 +11,7 @@ import java.util.logging.LogRecord;
  * looks like this (single line):
  * <p>
  * <code>2009-12-30 10:10:06.732 INFO [root|main]: This is the log message</code>
+ * </p>
  */
 public class BriefLogFormatter extends Formatter {
     private static final String LINESEP = System.getProperty("line.separator");

@@ -2,7 +2,6 @@ package com.home.colorygame.colory;
 
 /**
  * Colory panel interface
- * <p>
  */
 public interface ColoryPanelIF {
     /**

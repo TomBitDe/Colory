@@ -5,7 +5,6 @@ import java.util.prefs.Preferences;
 
 /**
  * Colory utilities
- * <p>
  */
 public class ColoryUtil {
     private static final Logger log = Logger.getLogger(ColoryUtil.class.getName());

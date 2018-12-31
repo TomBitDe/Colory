@@ -2,7 +2,6 @@ package com.home.colorygame.colory;
 
 /**
  * The Colory game mute
- * <p>
  */
 public enum ColoryMute {
     /**

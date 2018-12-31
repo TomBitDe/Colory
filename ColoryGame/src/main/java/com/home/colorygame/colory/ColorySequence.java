@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 /**
  * A sequence to be repeated by the user
- * <p>
  */
 public final class ColorySequence extends ArrayList<Integer> {
     private static final long serialVersionUID = 1L;
@@ -18,7 +17,7 @@ public final class ColorySequence extends ArrayList<Integer> {
      * in the range [0, maxPushArea-1]. The value will be used to reference the content in ArrayList colorButtons
      *
      * @param cnt         the number of values to create in the sequence
-     * @param maxPushArea the maximum number of PushAreas to consider ( >= 1 )
+     * @param maxPushArea the maximum number of PushAreas to consider ( greater or equal 1 )
      */
     public ColorySequence(final int cnt, final int maxPushArea) {
         super();
